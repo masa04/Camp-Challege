@@ -1,0 +1,21 @@
+自分のPC　スペック
+
+PC
+FMVA30SB
+
+OS
+Windows 8.1 64ﾋﾞｯﾄ
+
+CPU 
+AMD Dual-Core E1-2100 1GHz/2コア　
+
+ﾋﾞﾃﾞｵﾁｯﾌﾟ
+AMD Radeon HD 8210　512MB
+
+実装ﾒﾓﾘ
+4.00GB DDR3L PC3L-12800
+
+
+HDD
+TOSHIBA MQ01ABF032 320G 5,400 rpm
+
