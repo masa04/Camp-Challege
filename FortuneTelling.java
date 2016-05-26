@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Random;
 
+import java.util.Date;
+import java.util.Random;
+import javax.servlet.RequestDispatcher;
+import org.camp.servlet.ResultDat;
+
 /**
  *
  * @author masa1
@@ -31,17 +36,29 @@ public class FortuneTelling extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = response.getWriter();
         
-        String lucklist[] = {"大吉","中吉","小吉","吉","半吉","末小吉","凶","半凶","大凶"};
+        PrintWriter out = response.getWriter();
+
+        
+        final String result ="/WEB-INF/jsp/FortuneTellingResult.jsp";
+        
+        String luckList[] = {"大吉","中吉","小吉","吉","半吉","末小吉","凶","半凶","大凶"};
         
         Random rand = new Random();
         
-        Integer index = rand .nextInt(lucklist.length);
+        Integer index = rand .nextInt(luckList.length);
         
+        ResultDat data = new ResultDat();
+        data.setD(new Date());
+        data.setLuck(luckList[index]);
+        request.setAttribute("DATA",data);
+        
+        RequestDispatcher rd = request. getRequestDispatcher(result);
+        rd.forward(request, response);
+    
         try {
             /* TODO output your page here. You may use following sample code. */
-            out.println("今日のあなたの運勢は..."+lucklist[index]+"!");
+            out.println("今日のあなたの運勢は..."+luckList[index]+"!");
         } finally {
             out.close();
         }
