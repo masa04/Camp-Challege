@@ -22,8 +22,9 @@
         自己紹介:<%= userdata.getComment()%><br>
         以上の内容で登録しました。<br>
         
-        //ここでセッションを切ります。
-       session.invalidate();
+        <%//ここでセッションが必要なくなるので、セッションを切ります。%>
+       <% hs .invalidate(); %><br>
     </body>
+   <%//トップに戻るリンクが欲しいから作りました。%> 
      <%=JumsHelper.getInstance().home()%>
 </html>

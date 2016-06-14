@@ -1,15 +1,13 @@
 package jums;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * insertresultと対応するサーブレット
@@ -41,12 +39,15 @@ public class InsertResult extends HttpServlet {
             }
             //ユーザー情報に対応したJavaBeansオブジェクトに格納していく
             UserDataDTO userdata = new UserDataDTO();
-            userdata.setName((String)request.getParameter("name"));
-            userdata.setBirthday(Date.valueOf((String)request.getParameter("birthday")));
-            System.out.print(userdata.setBirthday);
-           // userdata.setType(Integer.getInteger((String)request.getParameter("type")));
-           // userdata.setTell((String)request.getParameter("tell"));
-            //userdata.setComment((String)request.getParameter("comment"));
+            UserDataBeans udb = new UserDataBeans();
+            udb = (UserDataBeans)session.getAttribute("udb");
+            userdata.setName(udb.getName());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Date sdfpast =new java.sql.Date(sdf.parse(udb.getYear() +"/" + udb.getMonth()+ "/"  + udb.getDay()).getTime());
+            userdata.setBirthday(sdfpast);
+            userdata.setType(Integer.parseInt((String)udb.getType()));
+            userdata.setTell(udb.getTell());
+            userdata.setComment(udb.getComment());
             
             //DBへデータの挿入
             UserDataDAO .getInstance().insert(userdata);
@@ -55,8 +56,8 @@ public class InsertResult extends HttpServlet {
             
         }catch(Exception e){
             //データ挿入に失敗したらエラーページにエラー文を渡して表示
-           // request.setAttribute("error", e.getMessage());
-            //request.getRequestDispatcher("/error.jsp").forward(request, response);
+           request.setAttribute("error", e.getMessage());
+         request.getRequestDispatcher("/error.jsp").forward(request, response);
             
         }
     }

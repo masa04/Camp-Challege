@@ -5,9 +5,6 @@
  */
 package jums;
 
-import java.sql.Timestamp;
-import java.util.Date;
-
 /**
  *
  * @author masa1

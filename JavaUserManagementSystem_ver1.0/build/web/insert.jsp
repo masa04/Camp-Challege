@@ -6,6 +6,7 @@
     UserDataBeans userdata = new UserDataBeans();
     userdata = (UserDataBeans)session.getAttribute("udb");
     
+  //下のif文のために変数を定義してます。
    String a ="";
    String b ="";
    String c ="";
@@ -14,6 +15,7 @@
    String f ="";
    String g ="";
     
+   //下のフォームのif文の変数
     if(userdata != null){
     a = userdata.getName();
     b = userdata.getYear();
@@ -35,7 +37,7 @@
     <body>
     <form action="insertconfirm" method="POST">
         名前:
-        <input type="text" name="name" value="<% 
+        <input type="text" name="name" value="<% //insertconfirmからinsertへ再度入力する際のフォームの値を保持させる処理をvalueの中に書いています。
                   if(hs != null){ 
                       if(a != null){
                      out.print(a);
@@ -48,8 +50,8 @@
             <option value="">----</option>
             <%
             for(int i=1950; i<=2010; i++){ %>
-            <option value="<%=i%>" <%
-                    if(b != null){
+            <option value="<%=i%>" <%                  //insertconfirmからinsertへ再度入力する際のフォームの値を
+                    if(b != null){                     //保持させる処理をvalueの中に書いています。
                     if(b.equals(String.valueOf(i))){
                        out.print("selected");
                         }
@@ -62,8 +64,8 @@
             <option value="">--</option>
             <%
             for(int i = 1; i<=12; i++){ %>
-            <option value="<%=i%>" <%
-                    if(c != null){
+            <option value="<%=i%>" <%                 //insertconfirmからinsertへ再度入力する際のフォームの値を
+                    if(c != null){                    //保持させる処理をvalueの中に書いています。
                     if(c.equals(String.valueOf(i))){
                        out.print("selected");
                         }
@@ -76,8 +78,8 @@
             <option value="" >--</option>
             <%
             for(int i = 1; i<=31; i++){ %>
-            <option value="<%=i%>" <%
-                    if(d != null){
+            <option value="<%=i%>" <%                    //insertconfirmからinsertへ再度入力する際のフォームの値を
+                    if(d != null){                       //保持させる処理をvalueの中書いています。
                     if(d.equals(String.valueOf(i))){
                        out.print("selected");
                         }
@@ -89,7 +91,7 @@
         <br><br>
 
         種別:
-        <br>
+        <br>   <%//insertconfirmからinsertへ再度入力する際のフォームの値を保持させる処理をvalueの中に書いています。%>
         <input type="radio" name="type" value="1"<%
                     if(e != null){
                     if(e.equals("1")){
@@ -112,8 +114,8 @@
                    }
                    %>>その他<br>
         <br>
-
-        電話番号:
+              <%//insertconfirmからinsertへ再度入力する際のフォームの値を保持させる処理をvalueの中に書いています。%>
+        電話番号:   
         <input type="text" name="tell" value="<% 
                   if(hs != null){ 
                       if(f != null){
@@ -135,6 +137,7 @@
         <input type="submit" name="btnSubmit" value="確認画面へ">
     </form>
         <br>
+        <%//トップに戻るリンクが欲しいから作りました。%> 
         <%=JumsHelper.getInstance().home()%>
     </body>
 </html>

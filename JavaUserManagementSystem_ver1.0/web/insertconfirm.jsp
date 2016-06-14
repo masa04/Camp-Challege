@@ -13,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JUMS登録確認画面</title>
     </head>
-    <body>
+    <body>　　
         <% if(userdata.getName().equals("")){
         out.print("名前が未入力です。");
         }%>
@@ -63,6 +63,7 @@
             <input type="submit" name="no" value="登録画面に戻る">
         </form>
         <br>
+        <%//トップに戻るリンクが欲しいから作りました。%> 
         <%=JumsHelper.getInstance().home()%>
     </body>
 </html>

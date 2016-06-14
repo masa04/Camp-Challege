@@ -44,7 +44,7 @@ public class InsertConfirm extends HttpServlet {
             userdata.setTell((String)request.getParameter("tell"));
             userdata.setComment((String)request.getParameter("comment"));
  
-            //セッションに格納
+            //セッションにjavabeansを格納
             session.setAttribute("udb", userdata);
             System.out.println("Session updated!!");
             
